@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Leçon • Introduction à Linux</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+      padding-bottom: 100px;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* En-tête de la leçon */
+    .lesson-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px 0 30px;
+    }
+    .back-btn {
+      font-size: 28px;
+      color: #aaa;
+      text-decoration: none;
+    }
+    .lesson-title {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    #timer {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff9500;
+      font-family: 'Courier New', monospace;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin: 20px 0 15px;
+      color: #00ff9d;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+
+    /* Exercice */
+    .exercise-title {
+      color: #00ff9d;
+      font-size: 18px;
+      margin: 30px 0 12px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      color: white;
+      font-size: 16px;
+      margin: 12px 0 20px;
+    }
+    input[type="text"]::placeholder { color: #777; }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #00ff9d;
+      box-shadow: 0 0 0 3px rgba(0,255,157,0.2);
+    }
+
+    /* Bouton */
+    .btn-green {
+      background: linear-gradient(90deg, #00ff9d, #00c853);
+      color: white;
+      border: none;
+      padding: 18px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,255,157,0.4);
+      transition: transform 0.2s;
+    }
+    
+    .btn-green:active { transform: scale(0.97); }
+
+    /* Navigation fixe */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(15,23,42,0.97);
+      backdrop-filter: blur(20px);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
+    .nav-item {
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+      transition: color 0.3s;
+    }
+    .nav-item.active { color: #00ff9d; }
+    .nav-item i { font-size: 26px; display: block; margin-bottom: 4px; }
+  </style>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0e17;
+      color: #e0e0e0;
+      line-height: 1.7;
+      padding-bottom: 120px;
+    }
+    .container { max-width: 480px; margin: 0 auto; padding: 20px; }
+
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 20px 0 40px;
+      color: white;
+    }
+    .back { font-size: 32px; color: #888; text-decoration: none; }
+    .title { font-size: 22px; font-weight: bold; }
+    #timer { font-weight: bold; color: #ff9f43; font-family: monospace; font-size: 18px; }
+
+    h1 { 
+      text-align: center; font-size: 28px; margin: 10px 0 40px;
+      background: linear-gradient(to right, #00ff9d, #00c4ff);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+
+    .section {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .section h2 {
+      color: #00ff9d;
+      font-size: 22px;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .cmd {
+      background: #111; color: #00ff9d; padding: 16px; border-radius: 12px;
+      font-family: 'Courier New', monospace; font-size: 16px;
+      margin: 16px 0; border-left: 4px solid #00ff9d;
+      overflow-x: auto; white-space: pre;
+    }
+    .output {
+      background: #000; color: #0f0; padding: 14px; border-radius: 10px;
+      font-family: monospace; margin-top: 8px; font-size: 15px;
+    }
+    .tip {
+      background: rgba(255,157,0,0.15); border-left: 4px solid #ff9f43;
+      padding: 14px; border-radius: 8px; margin: 16px 0; font-size: 15px; color: #ffdb9c;
+    }
+    .danger {
+      background: rgba(255,59,48,0.15); border-left: 4px solid #ff3b30;
+      padding: 14px; border-radius: 8px; margin: 16px 0; font-size: 15px; color: #ff8e8e;
+    }
+    .exemple { color: #88ddcc; font-weight: bold; }
+
+    .next-btn {
+      background: linear-gradient(90deg, #00ff9d, #00c853);
+      color: white; border: none; padding: 18px;
+      border-radius: 50px; font-size: 18px; font-weight: bold;
+      width: 100%; margin: 40px 0 20px; cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,255,157,0.4);
+    }
+
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(10,14,23,0.97); backdrop-filter: blur(20px);
+      padding: 14px 20px; display: flex; justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.08); z-index: 1000;
+    }
+    .nav-item { text-align: center; color: #666; font-size: 12px; }
+    .nav-item.active { color: #00ff9d; }
+    .nav-item i { font-size: 26px; display: block; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- En-tête de la leçon -->
+  <div class="lesson-header">
+    <a href="cours.html" class="back-btn">Back</a>
+    <div class="lesson-title">Introduction à Linux</div>
+    <span id="timer">15:00</span>
+  </div>
+
+  <h3>Leçon 1 – Qu'est-ce que Linux ?</h3>
+  <p>
+    Linux est un système d’exploitation libre et open source créé en 1991 par Linus Torvalds. 
+    Contrairement à Windows ou macOS, Linux est gratuit, personnalisable à l’infini et très stable. 
+    Il est utilisé sur 96 % des superordinateurs, la majorité des serveurs web et même sur les smartphones Android !
+  </p>
+
+  <div class="exercise-title">Exercice rapide</div>
+  <p>Quelle commande affiche la version du noyau Linux ?</p>
+  <input type="text" id="answerInput" placeholder="Tape ici la commande... (ex: uname -r)">
+
+  <button class="btn-green" onclick="checkAnswer()">Valider & Continuer</button>
+
+</div>
+
+<!-- Navigation -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item active"><i class="fas fa-book"></i><span>Cours</span></div>
+  <div class="nav-item" onclick="location.href='outils.html'"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="location.href='contribuer.html'"><i class="fas fa-hands-helping"></i><span>Contribuer</span></div>
+  <div class="nav-item" onclick="location.href='profil.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+<script>
+  // Timer de 15 minutes
+  let time = 15 * 60; // 15 minutes en secondes
+  const timerDisplay = document.getElementById('timer');
+
+  const timerInterval = setInterval(() => {
+    let minutes = String(Math.floor(time / 60)).padStart(2, '0');
+    let seconds = String(time % 60).padStart(2, '0');
+    timerDisplay.textContent = minutes + ':' + seconds;
+
+    if (time <= 0) {
+      clearInterval(timerInterval);
+      timerDisplay.textContent = '00:00';
+      alert("Temps écoulé !");
+    }
+    time--;
+  }, 1000);
+
+  // Vérification simple de la réponse (exemple)
+  function checkAnswer() {
+    const input = document.getElementById('answerInput').value.trim().toLowerCase();
+    if (input === 'uname -r' || input === 'uname -a') {
+      alert("Correct ! Bien joué !");
+      // Ici tu peux rediriger vers la leçon suivante
+      // window.location.href = 'lecon-2.html';
+    } else {
+      alert("Pas tout à fait... Réessaie !");
+    }
+  }
+</script>
+
+</body>
+</html>

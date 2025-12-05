@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GIMP pour les élèves • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0e17;color:#e0e0e0;padding-bottom:120px;}
+    .container{max-width:520px;margin:0 auto;padding:30px 20px;}
+
+    /* Carte principale – IDENTIQUE à ton image */
+    .gimp-card{
+      display:flex;align-items:center;
+      background:rgba(255,255,255,0.08);backdrop-filter:blur(15px);
+      border-radius:28px;padding:26px 30px;margin-bottom:50px;
+      cursor:pointer;transition:all 0.4s ease;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 10px 35px rgba(0,0,0,0.4);
+    }
+    .gimp-card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.14);
+      box-shadow:0 25px 60px rgba(0,255,157,0.35);
+    }
+    .icon{
+      width:68px;height:68px;
+      background:linear-gradient(135deg,#00d4ff,#0077be);
+      border-radius:20px;display:flex;align-items:center;justify-content:center;
+      font-size:38px;color:white;
+    }
+    .text{flex:1;margin-left:26px;}
+    .text h3{color:white;font-size:23px;margin-bottom:6px;font-weight:bold;}
+    .text p{color:#88ddcc;font-size:16px;}
+    .arrow i{font-size:34px;color:#00ff9d;}
+
+    h1{text-align:center;font-size:32px;margin:30px 0 50px;
+       background:linear-gradient(to right,#00ff9d,#00c4ff);
+       -webkit-background-clip:text;background-clip:text;color:transparent;}
+
+    table{width:100%;border-collapse:collapse;margin:40px 0;
+          background:rgba(255,255,255,0.05);border-radius:20px;overflow:hidden;}
+    th{background:#00ff9d;color:#0a0e17;padding:18px;font-size:18px;}
+    td{padding:16px;border-bottom:1px solid rgba(255,255,255,0.1);}
+    tr:last-child td{border:none;}
+
+    .tips{background:rgba(0,255,157,0.08);padding:28px;border-radius:24px;margin:50px 0;border-left:6px solid #00ff9d;}
+    .tips h2{color:#00ff9d;margin-bottom:20px;font-size:22px;}
+    .tips li{margin:16px 0;font-size:16px;padding-left:10px;}
+
+    .definition{
+      background:linear-gradient(135deg,#00ff9d,#00c853);
+      color:#0a0e17;padding:34px;border-radius:28px;
+      text-align:center;font-size:20px;font-weight:bold;
+      margin:60px 0 100px;box-shadow:0 20px 50px rgba(0,255,157,0.5);line-height:1.6;
+    }
+
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;
+      background:rgba(10,14,23,0.97);backdrop-filter:blur(20px);
+      padding:14px 20px;display:flex;justify-content:space-around;
+      border-top:1px solid rgba(255,255,255,0.08);z-index:1000;}
+    .nav-item{text-align:center;color:#666;font-size:12px;cursor:pointer;}
+    .nav-item.active,.nav-item:hover{color:#00ff9d;}
+    .nav-item i{font-size:26px;display:block;margin-bottom:4px;}
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Carte principale – IDENTIQUE à ton image -->
+  <div class="gimp-card" onclick="document.getElementById('gimp').scrollIntoView({behavior:'smooth'})">
+    <div class="icon">
+      <i class="fas fa-image"></i>
+    </div>
+    <div class="text">
+      <h3>GIMP for Student Projects</h3>
+      <p>Unleash creativity with free image editing.</p>
+    </div>
+    <div class="arrow">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <h1 id="gimp">GIMP : le Photoshop 100 % gratuit pour tes projets</h1>
+
+  <table>
+    <tr><th colspan="2">GIMP vs Photoshop</th></tr>
+    <tr><td>100 % gratuit à vie</td><td>Pas de licence</td></tr>
+    <tr><td>Remplace Photoshop à 98 %</td><td>Calques, masques, filtres… tout y est</td></tr>
+    <tr><td>Très léger</td><td>Marche sur 4 Go RAM</td></tr>
+    <tr><td>Hors ligne</td><td>Pas besoin d’internet</td></tr>
+    <tr><td>Export .PSD</td><td>Ouvre les fichiers Photoshop</td></tr>
+    <tr><td>500+ plugins gratuits</td><td>Dessin animé, IA, 3D…</td></tr>
+  </table>
+
+  <div class="tips">
+    <h2>Comment faire adopter GIMP en 1 semaine</h2>
+    <ul>
+      <li>Installe GIMP + GMIC-QT (500 filtres artistiques)</li>
+      <li>Dossier partagé “Ressources GIMP” : pinceaux wax, motifs africains</li>
+      <li>Formation 30 min → créer une affiche ou couverture de cahier</li>
+      <li>Concours “Meilleure création GIMP” → prix = bonbons ou clé USB</li>
+      <li>Remplace l’icône GIMP par celle de Photoshop sur le bureau</li>
+      <li>Sticker “GIMP = Photoshop gratuit” sur chaque PC</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    GIMP = le Photoshop <strong>gratuit, libre et ultra-puissant</strong><br>
+    qui permet à chaque élève de créer affiches, montages,<br>
+    logos et bandes dessinées <strong>sans jamais payer un franc</strong>.
+  </div>
+
+</div>
+
+<!-- Navigation fixe -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item" onclick="location.href='contribuer.html'"><i class="fas fa-book"></i><span>cours</span></div>
+  <div class="nav-item active"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="location.href='contribuer3.html'"><i class="fas fa-hands-helping"></i><span>constibuer</span></div>
+  <div class="nav-item" onclick="location.href='profil.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+</body>
+</html>

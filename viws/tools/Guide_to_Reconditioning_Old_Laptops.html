@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reconditionnement PC • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0e17;color:#e0e0e0;padding-bottom:120px;}
+    .container{max-width:560px;margin:0 auto;padding:30px 20px;}
+
+    .recond-card{
+      display:flex;align-items:center;
+      background:rgba(255,255,255,0.08);backdrop-filter:blur(15px);
+      border-radius:28px;padding:26px 30px;margin-bottom:50px;
+      cursor:pointer;transition:all 0.4s ease;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 10px 35px rgba(0,0,0,0.4);
+    }
+    .recond-card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.14);
+      box-shadow:0 25px 60px rgba(0,255,157,0.35);
+    }
+    .icon{width:68px;height:68px;background:linear-gradient(135deg,#00d4ff,#0088cc);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:38px;color:white;}
+    .text{flex:1;margin-left:26px;}
+    .text h3{color:white;font-size:23px;margin-bottom:6px;font-weight:bold;}
+    .text p{color:#88ddcc;font-size:16px;}
+    .arrow i{font-size:34px;color:#00ff9d;}
+
+    h1{text-align:center;font-size:32px;margin:40px 0 50px;
+       background:linear-gradient(to right,#00ff9d,#00c4ff);
+       -webkit-background-clip:text;background-clip:text;color:transparent;}
+
+    table{width:100%;border-collapse:collapse;margin:40px 0;
+          background:rgba(255,255,255,0.05);border-radius:20px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,0.3);}
+    th{background:#00ff9d;color:#0a0e17;padding:16px 12px;font-size:17px;}
+    td{padding:16px 10px;border-bottom:1px solid rgba(255,255,255,0.1);text-align:center;vertical-align:middle;}
+    tr:last-child td{border:none;}
+    td:nth-child(1){text-align:left;background:rgba(0,255,157,0.12);font-weight:bold;color:#00ff9d;}
+    td:nth-child(2){color:#00ff9d;font-weight:bold;}
+    .photo-link{display:block;margin:8px auto 0;}
+    .photo-link img{width:90px;height:90px;object-fit:contain;border-radius:12px;border:2px solid rgba(0,255,157,0.3);transition:0.3s;}
+    .photo-link img:hover{transform:scale(1.15);border-color:#00ff9d;box-shadow:0 8px 20px rgba(0,255,157,0.5);}
+
+    .tips{background:rgba(0,255,157,0.08);padding:28px;border-radius:24px;margin:50px 0;border-left:6px solid #00ff9d;}
+    .tips h2{color:#00ff9d;margin-bottom:20px;font-size:22px;}
+    .tips li{margin:16px 0;font-size:16px;padding-left:10px;}
+
+    .definition{
+      background:linear-gradient(135deg,#00ff9d,#00c853);
+      color:#0a0e17;padding:34px;border-radius:28px;
+      text-align:center;font-size:20px;font-weight:bold;
+      margin:60px 0 100px;box-shadow:0 20px 50px rgba(0,255,157,0.5);line-height:1.6;
+    }
+
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;
+      background:rgba(10,14,23,0.97);backdrop-filter:blur(20px);
+      padding:14px 20px;display:flex;justify-content:space-around;
+      border-top:1px solid rgba(255,255,255,0.08);z-index:1000;}
+    .nav-item{text-align:center;color:#666;font-size:12px;cursor:pointer;}
+    .nav-item.active,.nav-item:hover{color:#00ff9d;}
+    .nav-item i{font-size:26px;display:block;margin-bottom:4px;}
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Carte principale -->
+  <div class="recond-card" onclick="document.getElementById('guide').scrollIntoView({behavior:'smooth'})">
+    <div class="icon">
+      <i class="fas fa-wrench"></i>
+    </div>
+    <div class="text">
+      <h3>Guide to Reconditioning Old Laptops</h3>
+      <p>Breathe new life into your existing hardware.</p>
+    </div>
+    <div class="arrow">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <h1 id="guide">Reconditionne ton PC comme un pro</h1>
+
+  <table>
+    <tr>
+      <th>Pièce / Action</th>
+      <th>Coût moyen (N-MRU)</th>
+      <th>Résultat</th>
+      <th>Photo claire</th>
+    </tr>
+    <tr>
+      <td>SSD 240 Go (interne)</td>
+      <td>12 000 – 18 000</td>
+      <td>Démarrage en 8 sec</td>
+      <td class="photo-link">
+        <a href="https://i.pinimg.com/736x/54/40/6b/54406bfee9f97822f957ad22ad28851d.jpg" target="_blank">
+          <img src="https://i.pinimg.com/736x/54/40/6b/54406bfee9f97822f957ad22ad28851d.jpg" alt="SSD 240Go">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Barrette RAM 8 Go DDR3/DDR4</td>
+      <td>12 000 – 20 000</td>
+      <td>Multitâche fluide</td>
+      <td class="photo-link">
+        <a href="https://i.pinimg.com/736x/b7/e6/c7/b7e6c70ae442c3eb1b908ac77c34b374.jpg" target="_blank">
+          <img src="https://i.pinimg.com/736x/b7/e6/c7/b7e6c70ae442c3eb1b908ac77c34b374.jpg" alt="RAM 8Go">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Nettoyage + pâte thermique</td>
+      <td>3 000 – 6 000</td>
+      <td>-30 °C, silence</td>
+      <td class="photo-link">
+        <a href="https://i.pinimg.com/1200x/ba/cd/d2/bacdd2b73c5dc11397378d23975e20f1.jpg" target="_blank">
+          <img src="https://i.pinimg.com/1200x/ba/cd/d2/bacdd2b73c5dc11397378d23975e20f1.jpg" alt="Pâte thermique">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Carte mère (exemple classique)</td>
+      <td>Diagnostic gratuit</td>
+      <td>Voir si réparable</td>
+      <td class="photo-link">
+        <a href="https://i.pinimg.com/736x/99/f1/a8/99f1a822c9e752ab907b17e8d6abd784.jpg" target="_blank">
+          <img src="https://i.pinimg.com/736x/99/f1/a8/99f1a822c9e752ab907b17e8d6abd784.jpg" alt="Carte mère laptop">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Batterie reconditionnée 6 cellules</td>
+      <td>12 000 – 22 000</td>
+      <td>3–4h d’autonomie</td>
+      <td class="photo-link">
+        <a href="https://i.pinimg.com/1200x/1b/68/75/1b6875ae661a3fc6b5df6f78176050a7.jpg" target="_blank">
+          <img src="https://i.pinimg.com/1200x/1b/68/75/1b6875ae661a3fc6b5df6f78176050a7.jpg" alt="Batterie laptop">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Clavier neuf (AZERTY FR)</td>
+      <td>8 000 – 15 000</td>
+      <td>Comme neuf</td>
+      <td class="photo-link">
+        <a href="https://i.pinimg.com/1200x/80/d5/03/80d503fd262e5d38c299627a844319f4.jpg" target="_blank">
+          <img src="https://i.pinimg.com/1200x/80/d5/03/80d503fd262e5d38c299627a844319f4.jpg" alt="Clavier laptop">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Chargeur universel 90W</td>
+      <td>8 000 – 12 000</td>
+      <td>Charge rapide & sûre</td>
+      <td class="photo-link">
+        <a href="https://i.pinimg.com/1200x/13/56/0f/13560f28b98b83dc01a629260d770788.jpg" target="_blank">
+          <img src="https://i.pinimg.com/1200x/13/56/0f/13560f28b98b83dc01a629260d770788.jpg" alt="Chargeur universel">
+        </a>
+      </td>
+    </tr>
+  </table>
+
+  <div class="tips">
+    <h2>Conseils 100 % testés en Afrique de l’Ouest</h2>
+    <ul>
+      <li>Achète SSD/RAM sur <strong>Jumia</strong> ou chez les revendeurs chinois (Adjamé, Treichville, etc.)</li>
+      <li>Technicien du quartier change SSD + nettoyage pour 5 000 F</li>
+      <li>Forme 3–4 élèves → ils deviennent l’équipe “Maintenance NIRD” de l’école</li>
+      <li>Sticker “Boosté par NIRD 2025” → fierté immédiate</li>
+      <li>Commence par les PC des profs → ils deviennent tes meilleurs ambassadeurs</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    Reconditionnement = redonner une jeunesse à un vieux ordinateur<br>
+    ordinateur avec 2-3 pièces peu chères + Linux → il devient <strong>plus rapide<br>
+    et durable</strong> qu’un PC Windows neuf… <strong>sans dépenser une fortune</strong>.
+  </div>
+
+</div>
+
+<!-- Navigation fixe -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item" onclick="location.href='contribuer.html'"><i class="fas fa-book"></i><span>cours</span></div>
+  <div class="nav-item active"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="location.href='contribuer3.html'"><i class="fas fa-hands-helping"></i><span>constibuer</span></div>
+  <div class="nav-item" onclick="location.href='profil.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+</body>
+</html>

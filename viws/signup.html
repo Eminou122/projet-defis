@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Création de Compte • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(15, 25, 45, 0.95);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 20px 28px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .back { font-size: 24px; color: #aaa; cursor: pointer; margin-right: 16px; }
+    .header-title { font-size: 20px; font-weight: 700; }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding: 32px 28px;
+      background: linear-gradient(to bottom, #1e293b, #0f172a);
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 16px;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
+    /* Formulaire */
+    .form {
+      padding: 28px;
+    }
+    .input-group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      color: white;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s;
+    }
+    input::placeholder {
+      color: #888;
+    }
+    input:focus, select:focus {
+      border-color: #00ff9d;
+      box-shadow: 0 0 0 3px rgba(0,255,157,0.2);
+    }
+    select { cursor: pointer; }
+
+    /* Champs avec icônes */
+    .input-wrapper {
+      position: relative;
+    }
+    .input-wrapper i {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 18px;
+    }
+
+    /* Checkbox */
+    .checkbox-group {
+      margin: 20px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #666;
+      border-radius: 6px;
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .checkbox input:checked + .checkmark {
+      background: #00ff9d;
+      border-color: #00ff9d;
+    }
+    .checkmark {
+      position: absolute;
+      top: 2px; left: 2px; right: 2px; bottom: 2px;
+      background: transparent;
+      border-radius: 4px;
+    }
+    .checkbox input:checked + .checkmark::after {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+    .checkbox input {
+      display: none;
+    }
+    .checkbox-text {
+      font-size: 14px;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* Bouton Créer Compte */
+    .btn-create {
+      width: 100%;
+      background: linear-gradient(90deg, #00ff9d, #00c853);
+      color: white;
+      border: none;
+      padding: 20px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      margin: 24px 0;
+      box-shadow: 0 12px 35px rgba(0,255,157,0.4);
+      transition: all 0.3s;
+    }
+    .btn-create:active { transform: scale(0.98); }
+
+    /* Lien de connexion */
+    .login-link {
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.8;
+    }
+    .login-link a {
+      color: #00ff9d;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="back"><i class="fas fa-chevron-left"></i></div>
+    <div class="header-title">Création de Compte</div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Rejoignez la communauté</h1>
+    <p>Créez votre compte pour commencer à utiliser la plateforme NIRD.</p>
+  </div>
+
+  <!-- Formulaire -->
+  <div class="form">
+    <form>
+      <div class="input-group">
+        <label>École ou Université</label>
+        <input type="text" placeholder="Entrez le nom de votre établissement" required />
+      </div>
+
+      <div class="input-group">
+        <label>Identifiant / Matricule (Optionnel)</label>
+        <input type="text" placeholder="Entrez votre identifiant" />
+      </div>
+
+      <div class="input-group">
+        <label>Adresse email</label>
+        <input type="email" placeholder="vous@example.com" required />
+      </div>
+
+      <div class="input-group">
+        <label>Mot de passe</label>
+        <div class="input-wrapper">
+          <input type="password" placeholder="Créez un mot de passe" required />
+          <i class="fas fa-eye-slash"></i>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Confirmer le mot de passe</label>
+        <div class="input-wrapper">
+          <input type="password" placeholder="Retapez votre mot de passe" required />
+          <i class="fas fa-eye-slash"></i>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <label class="checkbox">
+          <input type="checkbox" required />
+          <span class="checkmark"></span>
+        </label>
+        <div class="checkbox-text">
+          En m'inscrivant, j'accepte les Conditions d'Utilisation et la Politique de Confidentialité.
+        </div>
+      </div>
+
+      <button type="submit" class="btn-create">Créer mon compte</button>
+    </form>
+
+    <div class="login-link">
+      Déjà un compte ? <a href="#">Se connecter</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Quiz Défi Linux • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #121212;
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .container { max-width: 480px; margin: 0 auto; flex: 1; display: flex; flex-direction: column; }
+
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    
+    .close, .help { background:none; border:none; color:white; font-size:28px; cursor:pointer; }
+    .title { font-size:20px; font-weight:bold; }
+
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px 0; font-size: 15px; }
+    .progress { flex: 1; height: 8px; background: #333; border-radius: 4px; margin: 0 15px; overflow: hidden; }
+    .fill { height:100%; background:#00ff9d; border-radius:4px; transition: width 0.6s ease; width:0%; }
+    .timer { color:#ff9500; font-weight:bold; font-size:18px; }
+
+    .quiz-info { text-align:center; margin:20px 0; font-size:18px; color:#00ff9d; }
+
+    .image { text-align:center; margin: 20px 0; }
+    .image img { width: 180px; height: 180px; border-radius: 20px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+    .question { font-size: 24px; font-weight: bold; text-align: center; margin: 30px 0; line-height: 1.4; }
+
+    .answers { display:flex; flex-direction:column; gap:14px; margin-bottom:20px; }
+    .answer {
+      padding: 18px; border-radius: 16px; font-size: 17px; text-align: left;
+      background:#1e6b3f; border: none; cursor: pointer; transition: all 0.3s;
+    }
+    .answer:hover { background:#2a8a52; transform: translateX(5px); }
+    .correct { background:#006400 !important; transform:scale(1.03); }
+    .wrong   { background:#8B0000 !important; }
+    .disabled { opacity:0.5; pointer-events:none; }
+
+    .result { background: rgba(0,0,0,0.7); padding: 20px; border-radius: 16px; text-align: center; margin: 20px 0; display:none; }
+    .result h2 { font-size:28px; margin-bottom:10px; }
+    .good { color:#00ff9d; }
+    .bad  { color:#ff3b30; }
+
+    .btn {
+      margin-top: auto; padding: 18px; background:background linear-gradient(90deg, #00ff9d, #00c853);
+      color: #0a0e17; border: none; border-radius: 50px; font-size: 18px; font-weight: bold;
+      cursor: pointer; box-shadow: 0 10px 30px rgba(0,255,157,0.4);
+      transition: all 0.3s; margin-bottom: 20px;
+    }
+    .btn:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0,255,157,0.5); }
+
+    .end-screen { text-align:center; padding:40px 20px; line-height:1.8; }
+    .end-screen h1 { font-size:36px; margin-bottom:20px; color:#00ff9d; }
+    .score { font-size:28px; margin:30px 0; }
+    .errors { margin:30px 0; text-align:left; background:rgba(255,255,255,0.05); padding:20px; border-radius:16px; }
+    .error-item { margin-bottom:18px; padding-bottom:15px; border-bottom:1px solid #333; }
+    .error-item:last-child { border:none; }
+    .q-text { font-weight:bold; margin-bottom:8px; color:#ff9500; }
+    .your-answer { color:#ff3b30; }
+    .correct-answer { color:#00ff9d; font-weight:bold; }
+  </style>
+</head>
+<body>
+
+<div class="container" id="app">
+
+  <div class="header">
+    <button class="close" onclick="location.href='profil1.html'">X</button>
+    <div class="title">Défi Linux</div>
+    <button class="help" onclick="alert('20 secondes par question !')">?</button>
+  </div>
+
+  <div class="top-bar">
+    <div id="counter">Quiz 1 • Question 1/10</div>
+    <div class="progress"><div class="fill" id="fill"></div></div>
+    <div class="timer" id="timer">00:20</div>
+  </div>
+
+  <div class="quiz-info" id="quizInfo">Quiz 1 sur 5</div>
+
+  <div class="image">
+    <img src="../images/QuizWrite.jpg" alt="Linux challenge">
+  </div>
+
+  <h1 class="question" id="question">Chargement...</h1>
+
+  <div class="answers" id="answers"></div>
+
+  <div class="result" id="result">
+    <h2 id="resultTitle"></h2>
+    <p id="explanation"></p>
+  </div>
+
+  <button class="btn" id="nextBtn" style="display:none;" onclick="nextQuestion()">Question suivante</button>
+  <button class="btn" id="nextQuizBtn" style="display:none;" onclick="nextQuiz()">Quiz suivant</button>
+  <button class="btn" id="backToProfile" style="display:none;" onclick="location.href='profil1.html'">
+    Retour au profil
+  </button>
+</div>
+
+<script>
+// 5 quiz de 10 questions chacun
+const allQuizzes = [
+  // Quiz 1 - Bases
+  [
+    { q: "Qui a créé le noyau Linux ?", a: ["Bill Gates", "Steve Jobs", "Linus Torvalds", "Mark Zuckerberg"], c: 2, e: "Linus Torvalds en 1991" },
+    { q: "Quel est le principal avantage de Linux ?", a: ["Payant", "Open source & gratuit", "Seulement pour experts", "Propriété de Google"], c: 1, e: "Gratuit, libre, sécurisé" },
+    { q: "Quelle commande affiche les fichiers ?", a: ["dir", "ls", "list", "show"], c: 1, e: "ls = list" },
+    { q: "Où se trouve le dossier personnel ?", a: ["/", "/root", "/home", "/usr"], c: 1, e: "/home/tonnom" },
+    { q: "Que signifie sudo ?", a: ["Super User Delete", "Super User Do", "System Update", "Switch User"], c: 1, e: "Super User Do = admin" },
+    { q: "Comment mettre à jour les paquets ?", a: ["sudo apt upgrade", "sudo apt update", "sudo apt install", "sudo apt remove"], c: 1, e: "update + upgrade" },
+    { q: "Quelle commande montre la RAM utilisée ?", a: ["top", "free", "df", "ls"], c: 1, e: "free -h" },
+    { q: "Comment créer un dossier ?", a: ["mkdir", "touch", "cd", "rm"], c: 0, e: "mkdir nomdossier" },
+    { q: "Comment copier un fichier ?", a: ["mv", "cp", "rm", "cd"], c: 1, e: "cp fichier destination" },
+    { q: "Comment redémarrer ?", a: ["reboot", "shutdown", "poweroff", "halt"], c: 0, e: "sudo reboot" }
+  ],
+  // Quiz 2 - Fichiers & Commandes
+  [
+    { q: "Comment aller dans le dossier parent ?", a: ["cd ..", "cd /", "cd ~", "cd -"], c: 0, e: "cd .. = remonter" },
+    { q: "Comment voir le contenu d’un fichier ?", a: ["cat", "ls", "pwd", "echo"], c: 0, e: "cat fichier.txt" },
+    { q: "Comment supprimer un fichier ?", a: ["rm", "del", "delete", "remove"], c: 0, e: "rm fichier" },
+    { q: "Comment créer un fichier vide ?", a: ["touch", "new", "create", "nano"], c: 0, e: "touch fichier.txt" },
+    { q: "Comment éditer un fichier texte ?", a: ["nano", "vim", "gedit", "Tous les trois"], c: 3, e: "nano est le plus simple" },
+    { q: "Comment chercher un fichier ?", a: ["find", "search", "locate", "where"], c: 0, e: "find / -name fichier" },
+    { q: "Comment voir les processus ?", a: ["top", "ps", "htop", "Tous"], c: 3, e: "htop est le plus beau" },
+    { q: "Comment tuer un programme bloqué ?", a: ["kill", "stop", "end", "close"], c: 0, e: "kill PID ou killall nom" },
+    { q: "Comment voir l’espace disque ?", a: ["df -h", "du", "ls", "free"], c: 0, e: "df -h = lisible" },
+    { q: "Comment compresser un dossier ?", a: ["tar -czf", "zip", "rar", "7z"], c: 0, e: "tar -czf archive.tar.gz dossier/" }
+  ],
+  // Quiz 3 - Permissions & Sécurité
+  [
+    { q: "Que signifie chmod 755 ?", a: ["Propriétaire tout, autres lecture/exécution", "Tout le monde tout", "Personne rien", "Lecture seule"], c: 0, e: "rwxr-xr-x" },
+    { q: "Comment rendre un script exécutable ?", a: ["chmod +x script.sh", "chmod 777", "sudo script.sh", "run script.sh"], c: 0, e: "chmod +x" },
+    { q: "Où sont stockés les mots de passe ?", a: ["/etc/passwd", "/etc/shadow", "/home", "/root"], c: 1, e: "/etc/shadow" },
+    { q: "Comment changer de propriétaire ?", a: ["chown", "chmod", "chgrp", "mv"], c: 0, e: "sudo chown user fichier" },
+    { q: "Comment voir les utilisateurs connectés ?", a: ["who", "w", "users", "Tous"], c: 3, e: "w est le plus complet" },
+    { q: "Comment bloquer un port avec firewall ?", a: ["ufw deny 22", "firewall-cmd", "iptables", "Tous"], c: 0, e: "ufw est simple" },
+    { q: "Comment créer un utilisateur ?", a: ["adduser", "useradd", "newuser", "sudo user"], c: 0, e: "adduser est interactif" },
+    { q: "Comment voir l’historique des commandes ?", a: ["history", "log", "cmd", "bash_history"], c: 0, e: "history" },
+    { q: "Comment nettoyer le cache ?", a: ["sudo apt autoremove", "sudo apt clean", "sudo apt autoclean", "Tous"], c: 3, e: "Libère de l’espace" },
+    { q: "Quel est le super utilisateur ?", a: ["admin", "root", "sudo", "administrator"], c: 1, e: "root" }
+  ],
+  // Quiz 4 - Réseau
+  [
+    { q: "Comment voir ton adresse IP ?", a: ["ip a", "ifconfig", "ip addr show", "Tous"], c: 3, e: "ip a est moderne" },
+    { q: "Comment tester une connexion ?", a: ["ping google.com", "tracert", "netstat", "ip route"], c: 0, e: "ping" },
+    { q: "Comment voir les ports ouverts ?", a: ["ss -tuln", "netstat -tuln", "lsof -i", "Tous"], c: 3, e: "ss est rapide" },
+    { q: "Comment télécharger un fichier ?", a: ["wget", "curl", "download", "get"], c: 0, e: "wget url" },
+    { q: "Comment scanner un réseau ?", a: ["nmap", "ping", "traceroute", "netdiscover"], c: 0, e: "nmap -sn 192.168.1.0/24" },
+    { q: "Comment partager un dossier en réseau ?", a: ["samba", "nfs", "ftp", "Tous"], c: 0, e: "samba est le plus simple" },
+    { q: "Comment voir la vitesse internet ?", a: ["speedtest-cli", "fast.com", "iperf", "Tous"], c: 0, e: "speedtest-cli" },
+    { q: "Comment créer un point d'accès Wi-Fi ?", a: ["create_ap", "hostapd", "nmcli", "Tous"], c: 0, e: "create_ap" },
+    { q: "Comment monter un disque réseau ?", a: ["mount", "sshfs", "nfs", "Tous"], c: 3, e: "mount -t cifs" },
+    { q: "Comment voir les routeurs ?", a: ["ip route", "route", "netstat -r", "Tous"], c: 0, e: "ip route" }
+  ],
+  // Quiz 5 - Fun & Culture Linux
+  [
+    { q: "Quel animal est la mascotte de Linux ?", a: ["Pingouin (Tux)", "Renard", "Dragon", "Chat"], c: 0, e: "Tux le pingouin" },
+    { q: "Quelle est la commande la plus inutile ?", a: ["sl", "cowsay", "fortune", "Toutes"], c: 3, e: "Amuse-toi avec : sudo apt install sl" },
+    { q: "Comment afficher une vache qui parle ?", a: ["cowsay Hello", "fortune | cowsay", "Les deux", "Aucune"], c: 1, e: "fortune | cowsay" },
+    { q: "Comment faire un train dans le terminal ?", a: ["sl", "train", "choochoo", "rails"], c: 0, e: "sl = Steam Locomotive" },
+    { q: "Quel est le vrai nom de Richard Stallman ?", a: ["RMS", "Linus", "Bill", "Elon"], c: 0, e: "Père du logiciel libre" },
+    { q: "Quelle est la philosophie du logiciel libre ?", a: ["4 libertés", "Payant", "Propriétaire", "Fermé"], c: 0, e: "Utiliser, étudier, modifier, partager" },
+    { q: "Quel est le plus vieux gestionnaire de paquets ?", a: ["apt", "yum", "pacman", "dpkg"], c: 3, e: "dpkg (Debian)" },
+    { q: "Quel est le plus beau terminal ?", a: ["Terminator", "Alacritty", "Kitty", "Tous"], c: 3, e: "Goût personnel" },
+    { q: "Quelle est la meilleure distribution ?", a: ["Arch Linux", "Ubuntu", "Linux Mint", "La tienne"], c: 3, e: "La meilleure est celle que tu aimes" },
+    { q: "Pourquoi on aime Linux ?", a: ["Gratuit", "Stable", "Sécurisé", "Libre", "Tout ça à la fois"], c: 4, e: "Linux = liberté" }
+  ]
+];
+
+let currentQuiz = 0;     // 0 à 4 (5 quiz)
+let currentQuestion = 0;
+let score = 0;
+let totalAnswered = 0;
+let errors = [];
+let timeLeft = 20;
+let timerInterval = null;
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = 20;
+  document.getElementById('timer').textContent = '00: ' + String(timeLeft).padStart(2, '0');
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById('timer').textContent = '00:' + String(timeLeft).padStart(2, '0');
+    if (timeLeft <= 0) {
+      checkAnswer(-1, questions[currentQuiz][currentQuestion].c, questions[currentQuiz][currentQuestion].e, "Temps écoulé", questions[currentQuiz][currentQuestion].q);
+    }
+  }, 1000);
+}
+
+function loadQuestion() {
+  if (currentQuestion >= 10) {
+    nextQuiz();
+    return;
+  }
+
+  const q = allQuizzes[currentQuiz][currentQuestion];
+  document.getElementById('counter').textContent = `Quiz ${currentQuiz + 1} • Question ${currentQuestion + 1}/10`;
+  document.getElementById('quizInfo').textContent = `Quiz ${currentQuiz + 1} sur 5`;
+  document.getElementById('fill').style.width = `${((currentQuestion + 1) / 10) * 100}%`;
+  document.getElementById('question').textContent = q.q;
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'none';
+
+  const answersDiv = document.getElementById('answers');
+  answersDiv.innerHTML = '';
+  q.a.forEach((ans, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'answer';
+    btn.textContent = ans;
+    btn.onclick = () => checkAnswer(i, q.c, q.e, ans, q.q);
+    answersDiv.appendChild(btn);
+  });
+
+  startTimer();
+}
+
+function checkAnswer(selected, correct, exp, selectedText, questionText) {
+  clearInterval(timerInterval);
+  document.querySelectorAll('.answer').forEach((b, i) => {
+    b.classList.add('disabled');
+    b.onclick = null;
+    if (i === correct) b.classList.add('correct');
+    if (i === selected && i !== correct) b.classList.add('wrong');
+  });
+
+  const result = document.getElementById('result');
+  const title = document.getElementById('resultTitle');
+  const explanation = document.getElementById('explanation');
+
+  if (selected === correct) {
+    score++;
+    totalAnswered++;
+    title.textContent = "Correct !";
+    title.className = "good";
+  } else {
+    totalAnswered++;
+    title.textContent = "Mauvaise réponse";
+    title.className = "bad";
+    errors.push({ question: questionText, your: selectedText || "Temps écoulé", correct: allQuizzes[currentQuiz][currentQuestion].a[correct] });
+  }
+  explanation.textContent = exp;
+  result.style.display = 'block';
+
+  document.getElementById('nextBtn').style.display = 'block';
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion < 10) {
+    loadQuestion();
+  } else {
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('nextQuizBtn').style.display = 'block';
+  }
+}
+
+function nextQuiz() {
+  currentQuestion = 0;
+  currentQuiz++;
+  if (currentQuiz >= allQuizzes.length) {
+    showFinalResult();
+  } else {
+    loadQuestion();
+    document.getElementById('nextQuizBtn').style.display = 'none';
+  }
+}
+
+function showFinalResult() {
+  const percent = Math.round((score / 50) * 100);
+  let message = "";
+  if (percent === 100) message = "Génie Linux absolu !";
+  else if (percent >= 80) message = "Champion Linux !";
+  else if (percent >= 60) message = "Très bon niveau !";
+  else message = "Continue à t’entraîner !";
+
+  let errorsHTML = '';
+  if (errors.length > 0) {
+    errorsHTML = '<div class="errors"><h3 style="color:#ff9500;">Tes erreurs :</h3>';
+    errors.forEach(e => {
+      errorsHTML += `<div class="error-item"><div class="q-text">${e.question}</div><div>Tu as répondu : <span class="your-answer">${e.your}</span></div><div>Bonne réponse : <span class="correct-answer">${e.correct}</span></div></div>`;
+    });
+    errorsHTML += '</div>';
+  }
+
+  document.getElementById('app').innerHTML = `
+    <div class="end-screen">
+      <h1>Félicitations !</h1>
+      <p class="score">Score final : <strong style="color:#00ff9d">${score}/50</strong> (${percent}%)</p>
+      <h2>${message}</h2>
+      ${errorsHTML || '<h2 style="color:#00ff9d;">Parfait ! Aucune erreur !</h2>'}
+      <button class="btn" style="margin-top:40px;" onclick="location.href='profil.html'">
+        Retour au profil
+      </button>
+    </div>
+  `;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

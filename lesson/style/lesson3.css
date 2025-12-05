@@ -1,0 +1,111 @@
+/* ===== GLOBAL ===== */
+body {
+  background: #0a0e17;
+  color: #e5e5e5;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.container {
+  max-width: 480px;
+  margin: auto;
+  padding: 25px 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.back {
+  color: #cccccc;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffb938;
+}
+
+#timer {
+  font-weight: bold;
+  font-size: 18px;
+  color: #ff9f00;
+}
+
+/* ===== CONTENT ===== */
+h1 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #ffb938;
+}
+
+.section {
+  background: rgba(255,255,255,0.06);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 22px;
+  border-left: 4px solid #ffb938;
+}
+
+.section h2 {
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #ffd27f;
+}
+
+.cmd {
+  background: #111;
+  color: #ffcc66;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: monospace;
+  border: 1px solid #ffcc66;
+}
+
+/* ===== BUTTONS ===== */
+.next-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 25px;
+  background: linear-gradient(90deg, #ffb938, #ff9f00);
+  border: none;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.next-btn:hover {
+  transform: scale(1.05);
+}
+
+.next-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 15px;
+  margin-top: 15px;
+  background: #ff9f00;
+  color: white;
+  border-radius: 40px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.next-link:hover {
+  background: #e68b00;
+}

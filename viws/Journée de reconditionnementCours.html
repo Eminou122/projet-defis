@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Journée de reconditionnement • NIRD 2025</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- SEO + Partage réseaux sociaux -->
+  <meta property="og:title" content="Journée de reconditionnement NIRD – Samedi 23 novembre 2025">
+  <meta property="og:description" content="Viens redonner vie à ton vieux ordinateur ! SSD gratuit, RAM offerts, installation Linux, goûter… Tout gratuit !">
+  <meta property="og:image" content="https://i.imgur.com/5kLmN2P.png">
+  <meta property="og:type" content="event">
+
+  <style>
+    :root {
+      --primary: #00ff9d;
+      --primary-dark: #00c853;
+      --bg: #0a0e17;
+      --card: rgba(20,25,40,0.95);
+      --text: #e0e0e0;
+      --text-light: #88ddcc;
+      --radius: 28px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 120px;
+    }
+    .container { max-width: 520px; margin: 0 auto; padding: 20px; }
+
+    .hero {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    .hero img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg) 0%, rgba(10,14,23,0.6) 40%, transparent 100%);
+    }
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
+      text-align: center;
+      color: white;
+    }
+    .hero-title {
+      font-size: 34px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .hero-date {
+      font-size: 20px;
+      color: var(--primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    h2 {
+      font-size: 28px;
+      text-align: center;
+      margin: 50px 0 30px;
+      background: linear-gradient(to right, var(--primary), #00c4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .section h3 {
+      color: var(--primary);
+      font-size: 22px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    ul.checklist {
+      list-style: none;
+      padding-left: 10px;
+    }
+    ul.checklist li {
+      margin: 18px 0;
+      font-size: 17px;
+      padding-left: 30px;
+      position: relative;
+    }
+    ul.checklist li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 2px;
+    }
+
+    .highlight {
+      background: rgba(0,255,157,0.15);
+      padding: 24px;
+      border-radius: 16px;
+      border-left: 5px solid var(--primary);
+      font-size: 18px;
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .btn-register {
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      color: #0a0e17;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 20px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(0,255,157,0.5);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .btn-register:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,255,157,0.6); }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(10,14,23,0.97);
+      backdrop-filter: blur(20px);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
+    .nav-item { text-align:center; color:#666; font-size:12px; cursor:pointer; }
+    .nav-item.active, .nav-item:hover { color:var(--primary); }
+    .nav-item i { font-size:26px; display:block; margin-bottom:4px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <img src="https://i.imgur.com/5kLmN2P.png" alt="Journée de reconditionnement NIRD – illustration festive avec ordinateur, outils et élèves">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Journée de reconditionnement</h1>
+      <div class="hero-date">
+        <i class="far fa-calendar-check"></i>
+        Samedi 23 novembre • Toute la journée
+      </div>
+    </div>
+  </div>
+
+  <h2>Viens redonner vie à ton vieux PC gratuitement !</h2>
+
+  <div class="section">
+    <h3>Ce qui t’attend ce jour-là</h3>
+    <ul class="checklist">
+      <li>Installation d’un SSD gratuit (120 Go ou 240 Go)</li>
+      <li>Ajout de RAM (jusqu’à 8 Go si compatible)</li>
+      <li>Nettoyage complet + pâte thermique</li>
+      <li>Installation de Linux Mint ou Ubuntu</li>
+      <li>Formation express LibreOffice & GIMP</li>
+      <li>Stickers NIRD + diplôme “Héros du reconditionnement”</li>
+      <li>Goûter offert (jus + biscuits)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Programme détaillé</h3>
+    <ul class="checklist">
+      <li><strong>08h30 – 09h30</strong> Accueil + café</li>
+      <li><strong>09h30 – 12h30</strong> Reconditionnement en live</li>
+      <li><strong>12h30 – 14h00</strong> Pause déjeuner (chacun apporte son plat)</li>
+      <li><strong>14h00 – 16h30</strong> Installation Linux + formation</li>
+      <li><strong>16h30 – 17h30</strong> Remise diplômes + photo</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Apporte juste</h3>
+    <ul class="checklist">
+      <li>Ton ordinateur portable (même très vieux)</li>
+      <li>Ton chargeur</li>
+      <li>Ta bonne humeur</li>
+    </ul>
+    <p style="text-align:center; margin-top:20px; color:var(--text-light);">
+      Tout le reste est <strong>100 % gratuit</strong> grâce à NIRD
+    </p>
+  </div>
+
+  <div class="highlight">
+    Plus de 300 ordinateurs sauvés lors des dernières journées !<br>
+    <strong>Le tien sera le prochain</strong>
+  </div>
+
+  <button class="btn-register" onclick="registerEvent()">
+    Je m’inscris gratuitement !
+    <i class="fas fa-heart"></i>
+  </button>
+
+</div>
+
+<!-- Navigation -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+    <div class="nav-item" onclick="location.href='cours.html'"><i class="fas fa-book"></i><span>Cours</span></div>
+  <div class="nav-item" onclick="location.href='outils2.html'"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item active"><i class="fas fa-hands-helping"></i><span>Contribuer</span></div>
+  <div class="nav-item" onclick="location.href='profil1.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+<script>
+  function registerEvent() {
+    alert("Inscription réussie !\n\nTu recevras un rappel WhatsApp la veille.\n\nÀ très vite le 23 novembre !");
+    // Décommente la ligne ci-dessous pour rediriger vers un Google Form
+    // location.href = "https://forms.gle/TonLienIci";
+  }
+</script>
+
+</body>
+</html>

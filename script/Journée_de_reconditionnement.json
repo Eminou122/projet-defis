@@ -1,0 +1,15 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Journée de reconditionnement NIRD",
+  "startDate": "2025-11-23",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "image": "https://i.imgur.com/5kLmN2P.png",
+  "description": "Grande journée de reconditionnement matériel avec les élèves et profs. Venez redonner vie à vos vieux ordinateurs !",
+  "organizer": {
+    "@type": "Organization",
+    "name": "NIRD Côte d'Ivoire",
+    "url": "https://nird.ci"
+  }
+}

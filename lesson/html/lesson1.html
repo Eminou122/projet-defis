@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leçon 1 • Introduction à Linux</title>
+   <link rel="stylesheet" href="../style/lesson1.css"> 
+   <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0e17;
+      color: #e0e0e0;
+      line-height: 1.7;
+      padding-bottom: 120px;
+    }
+    .container { max-width: 480px; margin: 0 auto; padding: 20px; }
+
+    /* Header */
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 20px 0 40px;
+      color: white;
+    }
+    .back { font-size: 32px; color: #888; text-decoration: none; }
+    .title { font-size: 22px; font-weight: bold; }
+    #timer { font-weight: bold; color: #ff9f43; font-family: monospace; font-size: 18px; }
+
+    h1 { 
+      text-align: center; font-size: 28px; margin: 10px 0 40px;
+      background: linear-gradient(to right, #00ff9d, #00c4ff);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+
+    /* Sections */
+    .section {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .section h2 {
+      color: #00ff9d;
+      font-size: 22px;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .cmd {
+      background: #111;
+      color: #00ff9d;
+      padding: 16px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      margin: 16px 0;
+      border-left: 4px solid #00ff9d;
+      overflow-x: auto;
+    }
+    .output {
+      background: #000;
+      color: #0f0;
+      padding: 14px;
+      border-radius: 10px;
+      font-family: monospace;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+    .tip {
+      background: rgba(0,255,157,0.1);
+      border-left: 4px solid #00ff9d;
+      padding: 14px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+    .exemple { color: #88ddcc; font-weight: bold; }
+
+    .next-btn {
+      background: linear-gradient(90deg, #00ff9d, #00c853);
+      color: white; border: none; padding: 18px;
+      border-radius: 50px; font-size: 18px; font-weight: bold;
+      width: 100%; margin: 40px 0 20px; cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,255,157,0.4);
+    }
+
+    /* Navigation fixe */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(10,14,23,0.97); backdrop-filter: blur(20px);
+      padding: 14px 20px; display: flex; justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.08); z-index: 1000;
+    }
+    .nav-item { text-align: center; color: #666; font-size: 12px; }
+    .nav-item.active { color: #00ff9d; }
+    .nav-item i { font-size: 26px; display: block; margin-bottom: 4px; }
+  </style>
+
+  
+</head>
+
+<body>
+
+<div class="container">
+<h1>Leçon 1 • Bienvenue dans Linux !</h1>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <h2>Qu'est-ce que Linux ?</h2>
+    <p>Linux est un <strong>système d’exploitation libre et gratuit</strong>, créé en 1991 par <strong>Linus Torvalds</strong>.</p>
+    <p>Contrairement à Windows ou macOS, tu peux le modifier, le distribuer et l’utiliser comme tu veux !</p>
+    <div class="tip">Aujourd’hui, Android, les serveurs web, les superordinateurs et même les routeurs tournent sous Linux !</div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <h2>Le Terminal : ton nouveau meilleur ami</h2>
+    <p>Dans Linux, on ne clique pas partout : on tape des <strong>commandes</strong> dans le terminal. C’est plus rapide et plus puissant !</p>
+    <p>Exemple : au lieu de chercher un dossier pendant 2 minutes avec la souris → 1 commande = 1 seconde.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <h2>Commande #1 → uname -r</h2>
+    <p><strong>Afficher la version du noyau Linux</strong></p>
+    <div class="cmd">$ uname -r</div>
+    <div class="output">6.5.0-28-generic</div>
+    <p class="exemple">Exemple simple : Tu veux savoir si ton ordi est à jour ? Tape cette commande → tu vois tout de suite la version !</p>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section">
+    <h2>Commande #2 → whoami</h2>
+    <p><strong>Voir ton nom d’utilisateur actuel</strong></p>
+    <div class="cmd">$ whoami</div>
+    <div class="output">akon</div>
+    <p class="exemple">Tu es sur un ordi partagé ? Tape whoami → tu sais tout de suite si c’est bien ton compte !</p>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section">
+    <h2>Commande #3 → pwd</h2>
+    <p><strong>Afficher le dossier où tu te trouves</strong> (pwd = Print Working Directory)</p>
+    <div class="cmd">$ pwd</div>
+    <div class="output">/home/akon/Bureau</div>
+    <p class="exemple">Tu es perdu dans les dossiers ? Tape pwd → tu sais exactement où tu es !</p>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section">
+    <h2>Commande #4 → ls</h2>
+    <p><strong>Lister les fichiers et dossiers</strong></p>
+    <div class="cmd">$ ls</div>
+    <div class="output">Documents  Images  Téléchargements  musique</div>
+    <div class="cmd">$ ls -la</div>
+    <div class="output">drwxr-xr-x  4 akon akon  4096 avril  5  Documents<br>-rw-r--r--  1 akon akon 12345 mars 30  photo.jpg</div>
+    <p class="exemple">Tu cherches un fichier ? ls te montre tout en 1 seconde !</p>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section">
+    <h2>Commande #5 → cd</h2>
+    <p><strong>Changer de dossier</strong> (cd = Change Directory)</p>
+    <div class="cmd">$ cd Documents</div>
+    <div class="cmd">$ cd ..</div>
+    <div class="cmd">$ cd ~</div>
+    <p class="exemple">Tu veux aller dans ton dossier Téléchargements ? → <code>cd ~/Téléchargements</code></p>
+  </div>
+
+  <button class="next-btn" onclick="alert('Bravo ! Tu as terminé la Leçon 1 !')">Terminer la leçon & Gagner 50 points</button>
+
+</div>
+
+<!-- Navigation fixe -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item active"><i class="fas fa-book"></i><span>Cours</span></div>
+  <div class="nav-item" onclick="location.href='outils.html'"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="location.href='contribuer.html'"><i class="fas fa-hands-helping"></i><span>Contribuer</span></div>
+  <div class="nav-item" onclick="location.href='profil.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+
+  <a href="lesson2.html" class="next-link">Next ➜</a>
+
+</div>
+
+<script src="../lesson/script/lesson1.js"></script>
+
+</body>
+</html>

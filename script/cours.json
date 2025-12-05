@@ -1,0 +1,90 @@
+{
+  "categories": [
+    {
+      "id": "python",
+      "title": "Python",
+      "icon": "fab fa-python",
+      "color": "#3776AB",
+      "lessons": [
+        "Variables & Types", "Listes & Dictionnaires", "Boucles & Conditions", "Fonctions", "POO", "Projets Django"
+      ]
+    },
+    {
+      "id": "javascript",
+      "title": "JavaScript",
+      "icon": "fab fa-js-square",
+      "color": "#F7DF1E",
+      "lessons": ["Bases JS", "DOM", "ES6+", "Async/Await", "React", "Node.js"]
+    },
+    {
+      "id": "java",
+      "title": "Java",
+      "icon": "fab fa-java",
+      "color": "#007396",
+      "lessons": ["Bases Java", "POO Avancée", "Collections", "JDBC", "Spring Boot", "Android"]
+    },
+    {
+      "id": "webdev",
+      "title": "HTML CSS JS",
+      "icon": "fas fa-code",
+      "color": "#E34F26",
+      "lessons": ["HTML5 Sémantique", "CSS Flexbox/Grid", "Responsive", "Animations", "JavaScript Moderne", "Portfolio Pro"]
+    },
+    {
+      "id": "hardware",
+      "title": "Hardware & PC",
+      "icon": "fas fa-microchip",
+      "color": "#00d4ff",
+      "lessons": ["CPU & GPU", "Carte mère", "RAM & Stockage", "Alimentation", "Refroidissement", "Montage PC"]
+    },
+    {
+      "id": "network",
+      "title": "Réseaux & IT",
+      "icon": "fas fa-network-wired",
+      "color": "#00ff9d",
+      "lessons": ["IP & Masques", "Routeurs/Switchs", "Wi-Fi & Sécurité", "Serveurs", "Cloud AWS", "Cyberdéfense"]
+    },
+    {
+      "id": "linux",
+      "title": "Linux & Serveurs",
+      "icon": "fab fa-linux",
+      "color": "#FCC624",
+      "lessons": ["Commandes essentielles", "Permissions", "Gestion paquets", "Serveur Web", "SSH & Sécurité", "Docker"]
+    },
+    {
+      "id": "cyber",
+      "title": "Cybersécurité",
+      "icon": "fas fa-shield-alt",
+      "color": "#ff3b30",
+      "lessons": ["Menaces courantes", "Phishing", "Mots de passe", "VPN", "Chiffrement", "Ethical Hacking"]
+    },
+    {
+      "id": "mobile",
+      "title": "Développement Mobile",
+      "icon": "fas fa-mobile-alt",
+      "color": "#3DDC84",
+      "lessons": ["Flutter", "React Native", "Kotlin", "Swift", "PWA", "Publication Store"]
+    },
+    {
+      "id": "data",
+      "title": "Data & IA",
+      "icon": "fas fa-brain",
+      "color": "#9D4EDD",
+      "lessons": ["Excel Avancé", "SQL", "Power BI", "Python Data", "Machine Learning", "ChatGPT API"]
+    },
+    {
+      "id": "gamedev",
+      "title": "Game Development",
+      "icon": "fas fa-gamepad",
+      "color": "#FF2D95",
+      "lessons": ["Unity", "Unreal Engine", "Godot", "2D/3D", "Blender", "Monétisation"]
+    },
+    {
+      "id": "creative",
+      "title": "Création Numérique",
+      "icon": "fas fa-palette",
+      "color": "#FF6B35",
+      "lessons": ["GIMP", "Inkscape", "Blender", "DaVinci Resolve", "Canva Pro", "Montage vidéo"]
+    }
+  ]
+}

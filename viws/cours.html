@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NIRD Academy • 12 Spécialités Tech</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #00ff9d;
+      --primary-dark: #00c853;
+      --bg: #0a0e17;
+      --card: rgba(25,30,50,0.95);
+      --text: #e0e0e0;
+      --text-light: #88ddcc;
+      --radius: 28px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 120px;
+    }
+    .container { max-width: 560px; margin: 0 auto; padding: 20px; }
+
+    header {
+      text-align: center;
+      padding: 40px 0 20px;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      background: linear-gradient(to right, #00ff9d, #00c4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
+    .subtitle { font-size: 18px; color: var(--text-light); }
+
+    .search {
+      margin: 30px 0;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50px;
+      border: none;
+      color: white;
+      font-size: 17px;
+      width: 100%;
+      outline: none;
+    }
+    .search::placeholder { color: #666; }
+
+    .categories {
+      display: grid;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .category {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .category:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0,255,157,0.3);
+    }
+
+    .cat-header {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: rgba(0,255,157,0.1);
+    }
+    .cat-icon {
+      width: 70px; height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: #0a0e17;
+    }
+    .cat-title {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .cat-count {
+      margin-left: auto;
+      background: rgba(255,255,255,0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .lessons {
+      padding: 0 24px 24px;
+    }
+    .lesson {
+      background: rgba(255,255,255,0.06);
+      padding: 16px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: 0.3s;
+    }
+    .lesson:hover {
+      background: rgba(0,255,157,0.15);
+      transform: translateX(8px);
+    }
+    .lesson i {
+      color: var(--primary);
+      font-size: 20px;
+    }
+    .lesson-title {
+      flex: 1;
+      font-size: 17px;
+    }
+    .lesson-duration {
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(10,14,23,0.97); backdrop-filter: blur(20px);
+      padding: 14px 20px; display: flex; justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.08); z-index: 1000;
+    }
+    .nav-item { text-align:center; color:#666; font-size:12px; cursor:pointer; }
+    .nav-item.active, .nav-item:hover { color:var(--primary); }
+    .nav-item i { font-size:26px; display:block; margin-bottom:4px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>NIRD Academy</h1>
+    <p class="subtitle">Choisis ta spécialité parmi 12 domaines tech</p>
+  </header>
+
+  <input type="text" id="searchInput" class="search" placeholder="Rechercher une spécialité ou un cours...">
+
+  <div class="categories" id="categories"></div>
+</div>
+
+<!-- Navigation -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="window.location.href='index.html'"><i class="fas fa-home"></i><span>Cours</span></div>
+  <div class="nav-item active"><i class="fas fa-book"></i><span>Cours</span></div>
+   <div class="nav-item" onclick="window.location.href='outils2.html'"><i class="fas fa-toolbox"></i><span>outils</span></div>
+   <div class="nav-item" onclick="window.location.href='contribuer3.html'"><i class="fas fa-hands-helping"></i><span>contribuer</span></div>
+   <div class="nav-item" onclick="window.location.href='profil1.html'"><i class="fas fa-user"></i><span>profil</span></div>
+</div>
+
+<script>
+  // TOUTES LES CATÉGORIES SONT MAINTENANT EN JAVASCRIPT PUR
+  const categories = [
+    { id: "python", title: "Python", icon: "fab fa-python", lessons: ["Variables & Types", "Listes & Dictionnaires", "Boucles & Conditions", "Fonctions", "POO", "Projets Django"] },
+    { id: "javascript", title: "JavaScript", icon: "fab fa-js-square", lessons: ["Bases JS", "DOM", "ES6+", "Async/Await", "React", "Node.js"] },
+    { id: "java", title: "Java", icon: "fab fa-java", lessons: ["Bases Java", "POO Avancée", "Collections", "JDBC", "Spring Boot", "Android"] },
+    { id: "webdev", title: "HTML CSS JS", icon: "fas fa-code", lessons: ["HTML5 Sémantique", "CSS Flexbox/Grid", "Responsive", "Animations", "JavaScript Moderne", "Portfolio Pro"] },
+    { id: "hardware", title: "Hardware & PC", icon: "fas fa-microchip", lessons: ["CPU & GPU", "Carte mère", "RAM & Stockage", "Alimentation", "Refroidissement", "Montage PC"] },
+    { id: "network", title: "Réseaux & IT", icon: "fas fa-network-wired", lessons: ["IP & Masques", "Routeurs/Switchs", "Wi-Fi & Sécurité", "Serveurs", "Cloud AWS", "Cyberdéfense"] },
+    { id: "linux", title: "Linux & Serveurs", icon: "fab fa-linux", lessons: ["Commandes essentielles", "Permissions", "Gestion paquets", "Serveur Web", "SSH & Sécurité", "Docker"] },
+    { id: "cyber", title: "Cybersécurité", icon: "fas fa-shield-alt", lessons: ["Menaces courantes", "Phishing", "Mots de passe", "VPN", "Chiffrement", "Ethical Hacking"] },
+    { id: "mobile", title: "Développement Mobile", icon: "fas fa-mobile-alt", lessons: ["Flutter", "React Native", "Kotlin", "Swift", "PWA", "Publication Store"] },
+    { id: "data", title: "Data & IA", icon: "fas fa-brain", lessons: ["Excel Avancé", "SQL", "Power BI", "Python Data", "Machine Learning", "ChatGPT API"] },
+    { id: "gamedev", title: "Game Development", icon: "fas fa-gamepad", lessons: ["Unity", "Unreal Engine", "Godot", "2D/3D", "Blender", "Monétisation"] },
+    { id: "creative", title: "Création Numérique", icon: "fas fa-palette", lessons: ["GIMP", "Inkscape", "Blender", "DaVinci Resolve", "Canva Pro", "Montage vidéo"] }
+  ];
+
+  // Fonction d’affichage
+  function renderCategories(filter = '') {
+    const container = document.getElementById('categories');
+    container.innerHTML = '';
+
+    categories
+      .filter(cat => cat.title.toLowerCase().includes(filter.toLowerCase()))
+      .forEach(cat => {
+        const card = document.createElement('div');
+        card.className = 'category';
+
+        card.innerHTML = `
+          <div class="cat-header">
+            <div class="cat-icon">
+              <i class="${cat.icon}"></i>
+            </div>
+            <div>
+              <div class="cat-title">${cat.title}</div>
+            </div>
+            <div class="cat-count">${cat.lessons.length} cours</div>
+          </div>
+          <div class="lessons">
+            ${cat.lessons.map(lesson => `
+              <div class="lesson">
+                <i class="fas fa-play-circle"></i>
+                <div class="lesson-title">${lesson}</div>
+                <div class="lesson-duration">15-45 min</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+
+        card.onclick = () => {
+          alert(`Bientôt disponible : ${cat.title} !`);
+        };
+
+        container.appendChild(card);
+      });
+  }
+
+  // Recherche en temps réel
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    renderCategories(e.target.value);
+  });
+
+  // Lancement au chargement
+  window.addEventListener('load', () => {
+    renderCategories();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pourquoi l’Open Source ? • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0e17;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+    .container { max-width: 520px; margin: 0 auto; }
+
+    /* Carte principale – exactement comme ton image */
+    .open-source-card {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 28px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .open-source-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.13);
+      box-shadow: 0 20px 50px rgba(0,255,157,0.25);
+    }
+    .icon i {
+      font-size: 48px;
+      background: linear-gradient(135deg, #ff9a00, #ff5e00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .text { flex: 1; margin-left: 24px; }
+    .text h3 { color: white; font-size: 22px; margin-bottom: 6px; }
+    .text p { color: #88ddcc; font-size: 16px; }
+    .arrow i { font-size: 32px; color: #00ff9d; }
+
+    /* Titre de la page */
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin: 20px 0 40px;
+      background: linear-gradient(to right, #00ff9d, #00c4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Points importants */
+    .benefits {
+      display: grid;
+      gap: 18px;
+      margin: 40px 0;
+    }
+    .benefit {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 20px;
+      border-left: 5px solid #00ff9d;
+    }
+    .benefit h3 {
+      color: #00ff9d;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    /* Conseils */
+    .tips {
+      background: rgba(0,255,157,0.08);
+      padding: 24px;
+      border-radius: 20px;
+      margin: 40px 0;
+    }
+    .tips h2 { color: #00ff9d; margin-bottom: 16px; }
+    .tips ol { padding-left: 20px; }
+    .tips li { margin: 12px 0; font-size: 16px; }
+
+    /* Définition finale */
+    .definition {
+      background: linear-gradient(135deg, #00ff9d, #00c853);
+      color: #0a0e17;
+      padding: 30px;
+      border-radius: 24px;
+      text-align: center;
+      font-size: 19px;
+      font-weight: bold;
+      margin: 50px 0 100px;
+      box-shadow: 0 15px 40px rgba(0,255,157,0.4);
+    }
+
+    /* Navigation fixe (comme dans tes autres pages) */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(10,14,23,0.97);
+      backdrop-filter: blur(20px);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
+    .nav-item { text-align: center; color: #666; font-size: 12px; }
+    .nav-item.active, .nav-item:hover { color: #00ff9d; }
+    .nav-item i { font-size: 26px; display: block; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Carte principale (cliquable) -->
+  <div class="open-source-card" onclick="document.getElementById('content').scrollIntoView({behavior: 'smooth'})">
+    <div class="icon">
+      <i class="fas fa-lightbulb"></i>
+    </div>
+    <div class="text">
+      <h3>Why Choose Open Source?</h3>
+      <p>Discover the benefits for your school.</p>
+    </div>
+    <div class="arrow">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <h1>Pourquoi choisir l’Open Source à l’école ?</h1>
+
+  <!-- 8 points clés -->
+  <div class="benefits">
+    <div class="benefit">
+      <h3>100 % gratuit</h3>
+      <p>Pas de licences Windows ou Microsoft Office à payer chaque année</p>
+    </div>
+    <div class="benefit">
+      <h3>Liberté totale</h3>
+      <p>Installe sur 10, 100 ou 1000 ordinateurs sans limite</p>
+    </div>
+    <div class="benefit">
+      <h3>Pas de dépendance à un éditeur</h3>
+      <p>Tu n’es plus bloqué si une entreprise augmente ses prix</p>
+    </div>
+    <div class="benefit">
+      <h3>Sécurité & transparence</h3>
+      <p>Tout le monde peut vérifier le code → moins de virus</p>
+    </div>
+    <div class="benefit">
+      <h3>Mise à jour continue</h3>
+      <p>Des milliers de développeurs améliorent les logiciels tous les jours</p>
+    </div>
+    <div class="benefit">
+      <h3>Personnalisable</h3>
+      <p>Interface en peul, wolof, français simplifié… tout est possible !</p>
+    </div>
+    <div class="benefit">
+      <h3>Respect de la vie privée</h3>
+      <p>Aucune collecte cachée de données</p>
+    </div>
+    <div class="benefit">
+      <h3>Prépare aux vrais métiers</h3>
+      <p>96 % des serveurs web et Android tournent sur Linux / Open Source</p>
+    </div>
+  </div>
+
+  <!-- Conseils pratiques -->
+  <div class="tips">
+    <h2>Comment convaincre ton école (conseils pratiques)</h2>
+    <ol>
+      <li>Commence petit → installe Ubuntu sur 5 vieux PC</li>
+      <li>Remplace Microsoft Office par <strong>LibreOffice</strong> (gratuit & identique)</li>
+      <li>Utilise <strong>Nextcloud</strong> à la place de Google Drive</li>
+      <li>Montre l’économie : 300 000 à 2 000 000 UMR/an économisés</li>
+      <li>Parle souveraineté : “Nos données restent en Côte d’Ivoire”</li>
+    </ol>
+  </div>
+
+  <!-- Définition finale -->
+  <div class="definition">
+    Open Source = des logiciels <strong>libres et gratuits</strong> dont tout le monde peut voir,<br>
+    modifier et partager le code source.<br><br>
+    C’est comme un livre de cuisine dont la recette est publique : tout le monde peut l’utiliser,<br>
+    l’améliorer et la transmettre <strong>sans payer</strong>.
+  </div>
+
+</div>
+
+<!-- Navigation fixe -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item" onclick="location.href='contribuer.html'"><i class="fas fa-book"></i><span>cours</span></div>
+  <div class="nav-item active"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="location.href='contribuer3.html'"><i class="fas fa-hands-helping"></i><span>constibuer</span></div>
+  <div class="nav-item" onclick="location.href='profil.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Agir et Contribuer - NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .back { font-size: 28px; color: #aaa; }
+    .search { margin-left: auto; font-size: 24px; color: #aaa; }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .hero img {
+      width: 100%;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      opacity: 0.95;
+    }
+    .btn-join {
+      background: linear-gradient(to right, #00ff9d, #00c853);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 8px 25px rgba(0,255,157,0.5);
+      cursor: pointer;
+    }
+
+    /* Événements */
+    .section-title {
+      font-size: 22px;
+      margin: 40px 0 20px;
+      color: #00ff9d;
+    }
+    .events {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .event {
+      background: rgba(255,255,255,0.05);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .event img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .event-content {
+      padding: 16px;
+    }
+    .event-title {
+      font-size: 17px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    .event-date {
+      font-size: 14px;
+      color: #00ff9d;
+      margin-bottom: 12px;
+    }
+    .btn-more {
+      background: rgba(0,255,157,0.15);
+      color: #00ff9d;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Façons de contribuer */
+    .contribute {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contrib-item {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      backdrop-filter: blur(10px);
+    }
+    .contrib-icon {
+      width: 50px;
+      height: 50px;
+      background: #00ff9d;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .contrib-text h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .contrib-text p {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+    .arrow { margin-left: auto; color: #00ff9d; font-size: 20px; }
+
+    /* Navigation fixe en bas */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15,23,42,0.95);
+      backdrop-filter: blur(20px);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-item {
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+    }
+    .nav-item.active {
+      color: #00ff9d;
+    }
+    .nav-item i { font-size: 24px; display: block; margin-bottom: 4px; }
+
+     .bottom-nav {
+      position:fixed; bottom:0; left:0; right:0;
+      background:rgba(15,23,42,0.97); backdrop-filter:blur(20px);
+      padding:14px 20px; display:flex; justify-content:space-around;
+      border-top:1px solid rgba(255,255,255,0.08); z-index:1000;
+    }
+    .nav-item { text-align:center; color:#888; font-size:12px; transition:color .3s; }
+    .nav-item.active, .nav-item:hover { color:#00ff9d; }
+    .nav-item i { font-size:26px; display:block; margin-bottom:4px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="back"><i></i></div>
+    <div>Agir et Contribuer</div>
+    <div class="search"><i></i></div>
+  </header>
+
+<div class="container">
+
+  <!-- En-tête propre -->
+  <div class="header">
+    Agir et Contribuer
+  </div>
+
+  <!-- Image + texte -->
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+      alt="Équipe NIRD en réunion de contribution">
+    <div class="overlay"></div>
+  </div>
+
+  <div class="content">
+    <h1 class="title">
+      Rejoignez-nous pour apporter l’indépendance numérique<br>aux écoles.
+    </h1>
+    <p class="text">
+      Devenez <strong>bénévole</strong>, donnez du matériel ou partagez notre mission<br>
+      pour soutenir le mouvement NIRD.
+    </p>
+
+    <button class="btn" onclick="alert('Merci pour ton intérêt ! Tu seras contacté très bientôt')">
+      
+    </button>
+
+    <!-- Petite explication demandée -->
+    <div class="explanation">
+      <strong>Pourquoi s'impliquer ?</strong><br><br>
+      Chaque ordinateur reconditionné, chaque heure de formation, chaque don permet à des dizaines d’élèves d’avoir accès à un outil numérique moderne et gratuit. 
+      En rejoignant NIRD, tu participes directement à réduire la fracture numérique en Côte d’Ivoire et ailleurs en Afrique.
+    </div>
+  </div>
+
+</div>
+
+  <h2 class="section-title">Événements à venir</h2>
+
+  <div class="events">
+    <div class="event">
+      <a href="CoursLunix.html" style="color:white;text-decoration: none;"><img src="../images/lunix-ubuntu.jpg"  alt="Atelier Linux"></a>
+      <div class="event-content">
+        <div class="event-title"><a href="CoursLunix.html" style="color:white;text-decoration: none;">Atelier d’installation Linux</a></div>
+        <div class="event-date">Sam, 16 Nov • 10:00</div>
+        <button class="btn-more">En savoir plus</button>
+      </div>
+    </div>
+
+    <div class="event">
+      <img src="../images/Journée de reconditionnement.jpg" href="Journée de reconditionnementCours.html" alt="Journée reconditionnement">
+      <div class="event-content">
+        <div class="event-title"><a href="Journée de reconditionnementCours.html" style="color:white;text-decoration:none;">Journée de reconditionnement</a></div>
+        <div class="event-date">Sam, 23 Nov • Toute la journée</div>
+        <button class="btn-more">En savoir plus</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+<!-- Navigation -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="window.location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item" onclick="window.location.href='cours.html'"><i class="fas fa-book"></i><span>Cours</span></div>
+  <div class="nav-item" onclick="window.location.href='outils2.html'"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item active"><i class="fas fa-hands-helping"></i><span>constibuer</span></div>
+  <div class="nav-item" onclick="window.location.href='profil1.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

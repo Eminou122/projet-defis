@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Boîte à Outils • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00ff9d;
+      --bg: #0a0e17;
+      --card: rgba(30,35,55,0.95);
+      --text: #e0e0e0;
+      --text-light: #94a3b8;
+      --radius: 24px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--text); padding-bottom:100px; }
+    .container { max-width:520px; margin:0 auto; padding:20px; }
+
+    header h1 { text-align:center; font-size:32px; margin:30px 0; background:linear-gradient(to right,#00ff9d,#00c4ff); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+    .search { width:100%; padding:16px 20px; background:rgba(255,255,255,0.08); border:none; border-radius:50px; color:white; font-size:17px; margin-bottom:30px; }
+    .search::placeholder { color:#666; }
+
+    .tabs { display:flex; gap:12px; margin-bottom:30px; flex-wrap:wrap; }
+    .tab { padding:12px 24px; border-radius:50px; background:rgba(255,255,255,0.1); color:var(--text-light); font-weight:bold; cursor:pointer; transition:0.3s; }
+    .tab.active { background:var(--primary); color:#000; }
+
+    .section { margin:40px 0; }
+    .section h2 { color:var(--primary); font-size:26px; margin-bottom:20px; }
+
+    .tool {
+      background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px;
+      display:flex; align-items:center; gap:20px; cursor:pointer; transition:0.3s;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    .tool:hover { transform:translateY(-5px); box-shadow:0 15px 40px rgba(0,255,157,0.3); }
+    .tool-icon { width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:30px; color:white; }
+    .tool.All .tool-icon { background:#ff6b35; }
+    .tool.GettingStarted .tool-icon { background:#ff9500; }
+    .tool.Software .tool-icon { background:#007aff; }
+    .tool.Hardware .tool-icon { background:#00d4ff; }
+    .tool-text h3 { font-size:20px; margin-bottom:6px; }
+    .tool-text p { color:var(--text-light); font-size:16px; }
+    .arrow { margin-left:auto; color:var(--primary); font-size:28px; }
+
+    /* Chatbot en cercle bleu */
+    #chatbot {
+      position:fixed; bottom:30px; right:30px; width:70px; height:70px;
+      background:linear-gradient(135deg,#007aff,#00c4ff); border-radius:50%;
+      display:flex; align-items:center; justify-content:center; color:white;
+      font-size:32px; cursor:pointer; box-shadow:0 10px 30px rgba(0,122,255,0.5);
+      transition:0.4s; z-index:1000;
+    }
+    #chatbot:hover { transform:scale(1.1); }
+
+    #chatPanel {
+      position:fixed; bottom:120px; right:30px; width:340px; max-height:500px;
+      background:var(--card); border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.7);
+      display:none; flex-direction:column; overflow:hidden; z-index:1001;
+    }
+    .chat-header { background:#007aff; padding:16px; color:white; font-weight:bold; text-align:center; }
+    .chat-body { flex:1; padding:20px; overflow-y:auto; background:#111; }
+    .message { margin:10px 0; padding:12px 16px; border-radius:18px; max-width:85%; }
+    .user { background:#00ff9d; color:#000; align-self:flex-end; border-bottom-right-radius:4px; }
+    .bot { background:#333; color:white; align-self:flex-start; border-bottom-left-radius:4px; }
+    .chat-input { padding:16px; background:#222; display:flex; gap:10px; }
+    .chat-input input { flex:1; padding:12px; border-radius:50px; border:none; background:#333; color:white; }
+    .chat-input button { background:var(--primary); color:#000; border:none; width:44px; height:44px; border-radius:50%; cursor:pointer; }
+
+    .bottom-nav { position:fixed; bottom:0; left:0; right:0; background:rgba(10,14,23,0.97); backdrop-filter:blur(20px); padding:14px 20px; display:flex; justify-content:space-around; border-top:1px solid rgba(255,255,255,0.08); }
+    .nav-item { text-align:center; color:#666; font-size:12px; cursor:pointer; }
+    .nav-item.active, .nav-item:hover { color:var(--primary); }
+    .nav-item i { font-size:26px; display:block; margin-bottom:4px 0; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header><h1>Boîte à Outils</h1></header>
+
+  <input type="text" class="search" placeholder="Search resources...">
+
+  <div class="tabs">
+    <div class="tab active" data-filter="all">All</div>
+    <div class="tab" data-filter="GettingStarted">Getting Started</div>
+    <div class="tab" data-filter="Software">Software</div>
+    <div class="tab" data-filter="Hardware">Hardware</div>
+  </div>
+
+  <div id="tools-list">
+    <!-- Les outils seront injectés par JS -->
+  </div>
+</div>
+
+<!-- CHATBOT CIRCLE BLEU -->
+<div id="chatbot" onclick="toggleChat()">
+  <i class="fas fa-comments"></i>
+</div>
+
+<!-- PANNEAU CHAT -->
+<div id="chatPanel">
+  <div class="chat-header">Assistant NIRD</div>
+  <div class="chat-body" id="chatBody">
+    <div class="message bot">Bonjour ! Clique sur n'importe quel outil pour que je t'explique tout</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Pose une question..." onkeypress="if(event.key==='Enter') sendMessage()">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+// === DONNÉES DES OUTILS ===
+const tools = [
+  { title: "Why Choose Open Source?", desc: "Discover the benefits for your school.", icon: "fas fa-lightbulb", color: "#ff9500", cat: "GettingStarted" },
+  { title: "Planning Your School’s Migration", desc: "A step-by-step guide to a smooth transition.", icon: "fas fa-chart-line", color: "#ff6b35", cat: "GettingStarted" },
+  { title: "Best Linux Distributions for Education", desc: "Compare options like Ubuntu, Mint, and more.", icon: "fas fa-desktop", color: "#007aff", cat: "Software" },
+  { title: "LibreOffice Suite Tutorial", desc: "Master the powerful open-source office suite.", icon: "fas fa-file-alt", color: "#007aff", cat: "Software" },
+  { title: "GIMP for Student Projects", desc: "Unleash creativity with free image editing.", icon: "fas fa-image", color: "#00d4ff", cat: "Software" },
+  { title: "Guide to Reconditioning Old Laptops", desc: "Breathe new life into your existing hardware.", icon: "fas fa-wrench", color: "#00d4ff", cat: "Hardware" },
+  { title: "Minimum Hardware Requirements", desc: "Check compatibility for a smooth experience.", icon: "fas fa-microchip", color: "#00d4ff", cat: "Hardware" }
+];
+
+// === AFFICHAGE DES OUTILS ===
+function renderTools(filter = 'all') {
+  const list = document.getElementById('tools-list');
+  list.innerHTML = '';
+
+  tools
+    .filter(t => filter === 'all' || t.cat === filter)
+    .forEach(tool => {
+      const div = document.createElement('div');
+      div.className = `tool ${tool.cat}`;
+      div.innerHTML = `
+        <div class="tool-icon" style="background:${tool.color}">
+          <i class="${tool.icon}"></i>
+        </div>
+        <div class="tool-text">
+          <h3>${tool.title}</h3>
+          <p>${tool.desc}</p>
+        </div>
+        <div class="arrow">></div>
+      `;
+      div.onclick = () => sendBotMessage(`Explique-moi : ${tool.title}`);
+      list.appendChild(div);
+    });
+}
+
+// === CHATBOT INTELLIGENT ===
+const responses = {
+  "Why Choose Open Source?": "L'open source est gratuit, sécurisé, personnalisable et respecte la vie privée. Parfait pour les écoles : zéro licence, installation illimitée, pas de pub !",
+  "Planning Your School’s Migration": "Un guide complet en 8 étapes pour passer ton école à Linux en douceur : audit, test pilote, formation profs, image standard… On t'accompagne !",
+  "Best Linux Distributions": "Recommandations 2025 : 1. Linux Mint (le plus simple), 2. Ubuntu 24.04 LTS, 3. Zorin OS Education. On t’aide à choisir selon ton matériel.",
+  "LibreOffice Suite Tutorial": "LibreOffice remplace Word, Excel, PowerPoint à 100%. Gratuit, hors ligne, compatible .docx, disponible en 115 langues dont le wolof !",
+  "GIMP for Student Projects": "Le vrai Photoshop gratuit ! Calques, retouche, dessin, filtres… Idéal pour les projets d’arts plastiques, affiches, montages.",
+  "Guide to Reconditioning": "On te montre comment transformer un vieux PC en machine rapide avec SSD + RAM + Linux. Budget moyen : 25 000 FCFA par poste.",
+  "Minimum Hardware Requirements": "Pour 2025 : 8 Go RAM + SSD 240 Go + Quad Core = expérience parfaite pendant 5 ans. Même un PC de 2012 fonctionne !"
+};
+
+function toggleChat() {
+  const panel = document.getElementById('chatPanel');
+  panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function sendBotMessage(text) {
+  const body = document.getElementById('chatBody');
+  const msg = document.createElement('div');
+  msg.className = 'message bot';
+  msg.textContent = responses[text] || "Super question ! Clique sur un outil pour que je t'explique en détail";
+  body.appendChild(msg);
+  body.scrollTop = body.scrollHeight;
+  toggleChat();
+}
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  if (!input.value.trim()) return;
+  const body = document.getElementById('chatBody');
+  const userMsg = document.createElement('div');
+  userMsg.className = 'message user';
+  userMsg.textContent = input.value;
+  body.appendChild(userMsg);
+  input.value = '';
+
+  // Réponse automatique simple
+  setTimeout(() => {
+    const botMsg = document.createElement('div');
+    botMsg.className = 'message bot';
+    botMsg.textContent = "Je peux t'expliquer n'importe quel outil ! Clique simplement dessus";
+    body.appendChild(botMsg);
+    body.scrollTop = body.scrollHeight;
+  }, 800);
+}
+
+// === INITIALISATION ===
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    renderTools(tab.dataset.filter);
+  };
+});
+
+renderTools(); // Chargement initial
+</script>
+
+<!-- Navigation fixe -->
+<div class="bottom-nav">
+  <div class="nav-item"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item"><i class="fas fa-book"></i><span>Cours</span></div>
+  <div class="nav-item active"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item"><i class="fas fa-hands-helping"></i><span>Contribuer</span></div>
+  <div class="nav-item"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+</body>
+</html>

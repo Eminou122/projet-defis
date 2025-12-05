@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Profil • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body{
+       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+       background: #0f172a; 
+       color: white; 
+       min-height: 100vh; 
+       padding-bottom: 80px;
+    }
+    .container    { max-width: 480px; margin: 0 auto; padding: 20px; }
+
+    /* Header Profil */
+    .profile-header { text-align:center; padding:40px 0 30px; }
+    .avatar {
+      width:120px; height:120px; background:linear-gradient(135deg,#00ff9d,#00c853);
+      border-radius:50%; 
+      margin:0 auto 20px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      font-size:56px; 
+      box-shadow:0 10px 30px rgba(0,255,157,0.4);
+    }
+    #userName   { font-size:26px; font-weight:bold; margin-bottom:8px; }
+    #userLevel  { font-size:19px; color:#00ff9d; font-weight:600; }
+
+    /* Cartes statistiques */
+    .stat {
+      background:rgba(255,255,255,0.06); padding:22px; border-radius:20px;
+      margin:16px 0; text-align:center; backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    .stat h3    { font-size:32px; margin-bottom:6px; }
+    .stat p     { opacity:0.8; font-size:15px; }
+
+    .progress-container {
+      height:10px; background:rgba(255,255,255,0.1); border-radius:10px;
+      overflow:hidden; margin-top:12px;
+    }
+    #progressBar {
+      height:100%; background:linear-gradient(90deg,#00ff9d,#00c853);
+      width:0%; border-radius:10px; transition:width 1.4s ease;
+    }
+
+    /* Bouton Quiz */
+    .btn-quiz {
+      background:linear-gradient(90deg,#00ff9d,#00c853); color:white; border:none;
+      padding:18px; border-radius:50px; font-size:18px; font-weight:bold;
+      width:100%; margin:30px 0 20px; cursor:pointer;
+      box-shadow:0 10px 30px rgba(0,255,157,0.5); transition:transform .2s;
+    }
+    .btn-quiz:active { transform:scale(0.98); }
+
+    /* Navigation fixe */
+    .bottom-nav {
+      position:fixed; bottom:0; left:0; right:0;
+      background:rgba(15,23,42,0.97); backdrop-filter:blur(20px);
+      padding:14px 20px; display:flex; justify-content:space-around;
+      border-top:1px solid rgba(255,255,255,0.08); z-index:1000;
+    }
+    .nav-item { text-align:center; color:#888; font-size:12px; transition:color .3s; }
+    .nav-item.active, .nav-item:hover { color:#00ff9d; }
+    .nav-item i { font-size:26px; display:block; margin-bottom:4px; }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Profil -->
+  <div class="profile-header">
+    <div class="avatar"><i class="fas fa-user"></i></div>
+    <h2 id="userName">Chargement…</h2>
+    <p id="userLevel">Niveau</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stat">
+    <h3 id="points">0</h3>
+    <p>Points gagnés</p>
+  </div>
+
+  <div class="stat">
+    <h3 id="progressText">0%</h3>
+    <p>Progression globale</p>
+    <div class="progress-container">
+      <div id="progressBar"></div>
+    </div>
+  </div>
+
+  <div class="stat" style="background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);">
+    <h3 id="absences">0</h3>
+    <p>Absences</p>
+  </div>
+
+  <button class="btn-quiz" onclick="window.location.href='quiz.html'">
+    Lancer le Quiz Défi Linux
+  </button>
+
+</div>
+
+<!-- Navigation -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="window.location.href='index.html'"><i class="fas fa-home"></i><span>Actual</span></div>
+  <div class="nav-item" onclick="window.location.href='cours.html'"><i class="fas fa-book"></i><span>Cours</span></div>
+  <div class="nav-item" onclick="window.location.href='outils2.html'"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="window.location.href='contribuer3.html'"><i class="fas fa-hands-helping"></i><span>Contribuer</span></div>
+  <div class="nav-item active"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+<script>
+  // Données de l'étudiant (modifiable facilement)
+  const user = {
+    name:     "Akon Koffi",
+    level:    "Apprenti Linux",
+    progress: 38,
+    points:   1240,
+    absences: 1
+  };
+
+  // Mise à jour du profil
+  document.getElementById("userName").textContent    = user.name;
+  document.getElementById("userLevel").textContent   = user.level;
+  document.getElementById("points").textContent      = user.points.toLocaleString();
+  document.getElementById("progressText").textContent = user.progress + "%";
+  document.getElementById("absences").textContent    = user.absences;
+
+  ;
+
+  // Animation de la barre de progression
+  setTimeout(() => {
+    document.getElementById("progressBar").style.width = user.progress + "%";
+  }, 300);
+</script>
+
+</body>
+</html>

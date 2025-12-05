@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Configuration Minimale • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0e17;color:#e0e0e0;padding-bottom:120px;}
+    .container{max-width:520px;margin:0 auto;padding:30px 20px;}
+
+    /* Carte principale – IDENTIQUE à ton image */
+    .hw-card{
+      display:flex;align-items:center;
+      background:rgba(255,255,255,0.08);backdrop-filter:blur(15px);
+      border-radius:28px;padding:26px 30px;margin-bottom:50px;
+      cursor:pointer;transition:all 0.4s ease;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 10px 35px rgba(0,0,0,0.4);
+    }
+    .hw-card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.14);
+      box-shadow:0 25px 60px rgba(0,255,157,0.35);
+    }
+    .icon{
+      width:68px;height:68px;
+      background:linear-gradient(135deg,#00d4ff,#0088cc);
+      border-radius:20px;display:flex;align-items:center;justify-content:center;
+      font-size:38px;color:white;
+    }
+    .text{flex:1;margin-left:26px;}
+    .text h3{color:white;font-size:23px;margin-bottom:6px;font-weight:bold;}
+    .text p{color:#88ddcc;font-size:16px;}
+    .arrow i{font-size:34px;color:#00ff9d;}
+
+    h1{text-align:center;font-size:32px;margin:30px 0 50px;
+       background:linear-gradient(to right,#00ff9d,#00c4ff);
+       -webkit-background-clip:text;background-clip:text;color:transparent;}
+
+    table{width:100%;border-collapse:collapse;margin:40px 0;
+          background:rgba(255,255,255,0.05);border-radius:20px;overflow:hidden;}
+    th{background:#00ff9d;color:#0a0e17;padding:18px;font-size:18px;}
+    td{padding:16px;border-bottom:1px solid rgba(255,255,255,0.1);}
+    tr:last-child td{border:none;}
+    tr.recommended{background:rgba(0,255,157,0.2);font-weight:bold;}
+
+    .tips{background:rgba(0,255,157,0.08);padding:28px;border-radius:24px;margin:50px 0;border-left:6px solid #00ff9d;}
+    .tips h2{color:#00ff9d;margin-bottom:20px;font-size:22px;}
+    .tips li{margin:16px 0;font-size:16px;padding-left:10px;}
+
+    .definition{
+      background:linear-gradient(135deg,#00ff9d,#00c853);
+      color:#0a0e17;padding:34px;border-radius:28px;
+      text-align:center;font-size:20px;font-weight:bold;
+      margin:60px 0 100px;box-shadow:0 20px 50px rgba(0,255,157,0.5);line-height:1.6;
+    }
+
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;
+      background:rgba(10,14,23,0.97);backdrop-filter:blur(20px);
+      padding:14px 20px;display:flex;justify-content:space-around;
+      border-top:1px solid rgba(255,255,255,0.08);z-index:1000;}
+    .nav-item{text-align:center;color:#666;font-size:12px;cursor:pointer;}
+    .nav-item.active,.nav-item:hover{color:#00ff9d;}
+    .nav-item i{font-size:26px;display:block;margin-bottom:4px;}
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Carte principale – IDENTIQUE à ton image -->
+  <div class="hw-card" onclick="document.getElementById('specs').scrollIntoView({behavior:'smooth'})">
+    <div class="icon">
+      <i class="fas fa-microchip"></i>
+    </div>
+    <div class="text">
+      <h3>Minimum Hardware Requirements</h3>
+      <p>Check compatibility for a smooth experience.</p>
+    </div>
+    <div class="arrow">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <h1 id="specs">Configuration minimale recommandée 2025</h1>
+
+  <table>
+    <tr><th>Usage</th><th>RAM</th><th>Stockage</th><th>Processeur</th><th>Résultat</th></tr>
+    <tr><td>Bureautique + web</td><td>4 Go</td><td>SSD 120 Go</td><td>Dual Core</td><td>Fluide</td></tr>
+    <tr><td>Labo 20 élèves</td><td>8 Go</td><td>SSD 240 Go</td><td>Quad Core</td><td>Parfait</td></tr>
+    <tr><td>GIMP + projets</td><td>8 Go</td><td>SSD 240 Go</td><td>Quad Core</td><td>Ultra fluide</td></tr>
+    <tr class="recommended"><td>NIRD 2025 (idéal)</td><td>8 Go</td><td>SSD 240 Go</td><td>Quad Core 2.0 GHz</td><td>5 ans garanti</td></tr>
+  </table>
+
+  <div class="tips">
+    <h2>Astuces NIRD qui changent tout</h2>
+    <ul>
+      <li>SSD = 80 % du gain de vitesse → priorité absolue</li>
+      <li>Sticker couleur sur chaque PC (vert = parfait, jaune = bon, rouge = à changer)</li>
+      <li>Utilise inxi -Fxz pour voir les specs en 5 secondes</li>
+      <li>Tableau géant au labo avec config de chaque machine</li>
+      <li>Nettoyage poussière tous les 2 ans = +3 ans de vie</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    Configuration minimale NIRD 2025 = <strong>8 Go RAM + SSD 240 Go + Quad Core</strong><br>
+    → garantit une expérience <strong>fluide, moderne et durable</strong> avec Linux<br>
+    pendant <strong>au moins 5 ans</strong>, même sur du matériel ancien.
+  </div>
+
+</div>
+
+<!-- Navigation fixe -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item" onclick="location.href='contribuer.html'"><i class="fas fa-book"></i><span>cours</span></div>
+  <div class="nav-item active"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="location.href='contribuer3.html'"><i class="fas fa-hands-helping"></i><span>constibuer</span></div>
+  <div class="nav-item" onclick="location.href='profil.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+</body>
+</html>

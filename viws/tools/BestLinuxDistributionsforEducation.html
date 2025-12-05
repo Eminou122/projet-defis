@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Meilleures Distros Linux • NIRD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0e17;color:#e0e0e0;padding-bottom:120px;}
+    .container{max-width:520px;margin:0 auto;padding:30px 20px;}
+
+    /* Carte principale – IDENTIQUE à ton image */
+    .distro-card{
+      display:flex;align-items:center;
+      background:rgba(255,255,255,0.08);backdrop-filter:blur(15px);
+      border-radius:28px;padding:26px 30px;margin-bottom:50px;
+      cursor:pointer;transition:all 0.4s ease;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 10px 35px rgba(0,0,0,0.4);
+    }
+    .distro-card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.14);
+      box-shadow:0 25px 60px rgba(0,255,157,0.35);
+    }
+    .icon{
+      width:68px;height:68px;
+      background:linear-gradient(135deg,#6a5acd,#483d8b);
+      border-radius:20px;display:flex;align-items:center;justify-content:center;
+      font-size:36px;color:white;
+    }
+    .text{flex:1;margin-left:26px;}
+    .text h3{color:white;font-size:23px;margin-bottom:6px;font-weight:bold;}
+    .text p{color:#88ddcc;font-size:16px;}
+    .arrow i{font-size:34px;color:#00ff9d;}
+
+    h1{text-align:center;font-size:32px;margin:30px 0 50px;
+       background:linear-gradient(to right,#00ff9d,#00c4ff);
+       -webkit-background-clip:text;background-clip:text;color:transparent;}
+
+    table{width:100%;border-collapse:collapse;margin:40px 0;
+          background:rgba(255,255,255,0.05);border-radius:20px;overflow:hidden;}
+    th{background:#00ff9d;color:#0a0e17;padding:18px;font-size:18px;}
+    td{padding:16px;border-bottom:1px solid rgba(255,255,255,0.1);}
+    tr:last-child td{border:none;}
+    td:first-child{background:rgba(0,255,157,0.15);font-weight:bold;color:#00ff9d;text-align:center;}
+
+    .tips{background:rgba(0,255,157,0.08);padding:28px;border-radius:24px;margin:50px 0;border-left:6px solid #00ff9d;}
+    .tips h2{color:#00ff9d;margin-bottom:20px;font-size:22px;}
+    .tips li{margin:16px 0;font-size:16px;padding-left:10px;}
+
+    .definition{
+      background:linear-gradient(135deg,#00ff9d,#00c853);
+      color:#0a0e17;padding:34px;border-radius:28px;
+      text-align:center;font-size:20px;font-weight:bold;
+      margin:60px 0 100px;box-shadow:0 20px 50px rgba(0,255,157,0.5);line-height:1.6;
+    }
+
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;
+      background:rgba(10,14,23,0.97);backdrop-filter:blur(20px);
+      padding:14px 20px;display:flex;justify-content:space-around;
+      border-top:1px solid rgba(255,255,255,0.08);z-index:1000;}
+    .nav-item{text-align:center;color:#666;font-size:12px;cursor:pointer;}
+    .nav-item.active,.nav-item:hover{color:#00ff9d;}
+    .nav-item i{font-size:26px;display:block;margin-bottom:4px;}
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Carte principale – IDENTIQUE à ton image -->
+  <div class="distro-card" onclick="document.getElementById('comparaison').scrollIntoView({behavior:'smooth'})">
+    <div class="icon">
+      <i class="fas fa-desktop"></i>
+    </div>
+    <div class="text">
+      <h3>Best Linux Distributions for Education</h3>
+      <p>Compare options like Ubuntu, Mint, and more.</p>
+    </div>
+    <div class="arrow">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <h1 id="comparaison">Meilleures distributions Linux pour l’éducation 2025</h1>
+
+  <table>
+    <tr><th colspan="4">Comparatif officiel NIRD</th></tr>
+    <tr><td>1</td><td>Linux Mint Cinnamon</td><td>9.8/10</td><td>Parfait pour débutants & vieux PC</td></tr>
+    <tr><td>2</td><td>Ubuntu 24.04 LTS</td><td>9.7/10</td><td>Stabilité 5 ans garantie</td></tr>
+    <tr><td>3</td><td>Zorin OS Education</td><td>9.5/10</td><td>Look Windows/Mac + apps pédagogiques</td></tr>
+    <tr><td>4</td><td>Edubuntu</td><td>9.2/10</td><td>150 logiciels éducatifs inclus</td></tr>
+    <tr><td>5</td><td>PrimTux</td><td>9.4/10</td><td>Idéal maternelle/primaire francophone</td></tr>
+  </table>
+
+  <div class="tips">
+    <h2>Conseils NIRD qui marchent à 100 % en Afrique</h2>
+    <ul>
+      <li>PC récent → Linux Mint (les profs croient que c’est Windows !)</li>
+      <li>PC très vieux → Lubuntu ou Xubuntu</li>
+      <li>Installe toujours Chrome + LibreOffice + VLC dès le début</li>
+      <li>Fond d’écran avec le logo de l’école = adoption immédiate</li>
+      <li>Clé USB « SOS Linux » avec les 3 meilleures distros</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    Distribution Linux éducative = une version de Linux spécialement conçue pour les écoles :<br>
+    <strong>facile, légère, sécurisée</strong>,<br>
+    avec tous les logiciels pédagogiques déjà installés<br>
+    et une interface adoptée en 5 minutes par élèves et profs.
+  </div>
+
+</div>
+
+<!-- Navigation fixe -->
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><i class="fas fa-home"></i><span>Accueil</span></div>
+  <div class="nav-item" onclick="location.href='cours.html'"><i class="fas fa-book"></i><span>cours</span></div>
+  <div class="nav-item active"><i class="fas fa-toolbox"></i><span>Outils</span></div>
+  <div class="nav-item" onclick="location.href='contribuer3.html'"><i class="fas fa-hands-helping"></i><span>constibuer</span></div>
+  <div class="nav-item" onclick="location.href='profil1.html'"><i class="fas fa-user"></i><span>Profil</span></div>
+</div>
+
+</body>
+</html>

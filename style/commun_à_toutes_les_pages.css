@@ -1,0 +1,43 @@
+/* style.css */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f172a;
+  color: white;
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation fixe */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(15,23,42,0.97);
+  backdrop-filter: blur(20px);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 1000;
+}
+.nav-item {
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+}
+.nav-item.active, .nav-item:active { color: #00ff9d; }
+.nav-item i { font-size: 26px; display: block; margin-bottom: 4px; }
+
+/* Boutons verts */
+.btn-green {
+  background: linear-gradient(90deg, #00ff9d, #00c853);
+  color: white; border: none; padding: 16px 32px;
+  border-radius: 50px; font-size: 17px; font-weight: bold;
+  width: 100%; box-shadow: 0 8px 25px rgba(0,255,157,0.4);
+  cursor: pointer;
+}
