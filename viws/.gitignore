@@ -1,0 +1,17 @@
+# Ignorer les fichiers système
+.DS_Store
+Thumbs.db
+*.log
+
+# Ignorer les fichiers d'environnement
+.env
+.env.local
+.env.*.local
+
+# Ignorer les dossiers de dépendances
+node_modules/
+
+# Ignorer les dossiers de build
+dist/
+build/
+.vercel/
